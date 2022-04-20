@@ -14,6 +14,20 @@ class Town:
         self.population = len(Child.child_list) + len(Adult.unemployed_list) + len(Adult.employed_list)
         self.unemployed_jobs()
 
+    def display_child(self, index):
+        """given an index, it will search through the children and display their age and gender """
+        if index < len(Child.child_list):
+            print("      " + Child.child_list[index][0] + " is a " + str(Child.child_list[index][2]) + " year old " + Child.child_list[index][1])
+
+    def display_children(self, start, finish):
+        """given a range, it will display the first and last names of the adults between the two marks, unemployed
+        and then employed """
+        index = start
+        finish = finish
+        while index < finish < len(Child.child_list):
+            print(str(index + 1) + ") " + Child.child_list[index][0])
+            index += 1
+
     def display_adult(self, index):
         """given an index, it will search through the unemployed and then employed adults and display their
         attributes """
@@ -377,7 +391,7 @@ while (good_size != 1):
     else:
         good_size = 1
 t = Town(size)
-print(t.size + " Sized Town Generated")
+print("\n\n\n\n\n"+ t.size + " Sized Town Generated")
 print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(
     int(len(t.buildings) / 2)) + " Other Buildings")
 print("To view the Following Aspects, Enter the Number Given:")
@@ -388,18 +402,18 @@ print("4: The Children")
 print("5: Exit")
 done = 0
 while done != 1:
-    aspect = int(input("Gimme a Number"))
+    aspect = int(input("\n"))
     if aspect == 1:
         t.display_houses()
     if aspect == 2:
         t.display_buildings()
     if aspect == 3:
-        done_people = False
+        done_adults = False
         start = 0
         last = 10
-        while done_people == False:
+        while done_adults == False:
             t.display_adults(start, last)
-            choice = input("For next list type N, for previous type P, to view a person, type their number")
+            choice = input("For next list type N, for previous type P, to view a person, type their number, and to leave, type D")
             if choice == "N" or choice == "n":
                 start += 10
                 last += 10
@@ -411,6 +425,27 @@ while done != 1:
             if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
                 t.display_adult(int(choice)-1)
             if choice == "D" or choice == "d":
-                done_people = True
-        if aspect == 4:
+                done_adults = True
+    if aspect == 4:
+
+        done_children = False
+        start = 0
+        last = 10
+        while done_children == False:
+            t.display_children(start, last)
+            choice = input("For next list type N, for previous type P, to view a child, type their number, and to leave, type D")
+
+            if choice == "N" or choice == "n":
+                start += 10
+                last += 10
+            if choice == "P" or choice == "p" and start > 0:
+                start -= 10
+                last -= 10
+            if choice == "P" or choice == "p" and start == 0:
+                print("Cannot go to previous")
+            if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
+                t.display_child(int(choice) - 1)
+            if choice == "D" or choice == "d":
+               done_children = True
+        if aspect == 5:
             done = True
