@@ -14,7 +14,9 @@ class Town:
         self.population = len(Child.child_list) + len(Adult.unemployed_list) + len(Adult.employed_list)
         self.unemployed_jobs()
 
-    def display_person(self, index):
+    def display_adult(self, index):
+        """given an index, it will search through the unemployed and then employed adults and display their
+        attributes """
         if index < len(Adult.unemployed_list):
             print("      " + Adult.unemployed_list[index][0] + " is a " + str(Adult.unemployed_list[index][3]) + " year old " + Adult.unemployed_list[index][2] + " with no job")
         else:
@@ -23,7 +25,9 @@ class Town:
                 print("      " + Adult.employed_list[index][0] + " is a " + str(Adult.employed_list[index][3]) + " year old " + Adult.employed_list[index][2])
                 print("He works as a ")
                 print(Adult.employed_list[index][1])
-    def display_people(self, start, finish):
+    def display_adults(self, start, finish):
+        """given a range, it will display the first and last names of the adults between the two marks, unemployed
+        and then employed """
         index = start
         finish = finish
         unemployed = 0
@@ -47,6 +51,8 @@ class Town:
                 index += 1
 
     def unemployed_jobs(self):
+        """will go through the list of unemployed adults and assign them either a job at home, keep them unemployed,
+        or if they are old enough, retire them """
         for x in Adult.unemployed_list:
             seed = random.randrange(0, 2, 1)
             if x[3] > 60:
@@ -64,6 +70,7 @@ class Town:
                 Adult.unemployed_list.pop(0)
 
     def generate_buildings(self):
+        """returns a random number of buildings based in ranges based on the town size"""
         if self.size == "Small":
             building_count = random.randrange(1, 4, 1)
         if self.size == "Medium":
@@ -77,6 +84,7 @@ class Town:
         return ()
 
     def generate_houses(self):
+        """returns a random number of houses of varying sizes based in ranges based on the town size"""
         if self.size == "Small":
             house_count = random.randrange(4, 10, 1)
         if self.size == "Medium":
@@ -90,11 +98,13 @@ class Town:
         return ()
 
     def random_building(self):
+        """creates a building, adds it to the list"""
         b = Building()
         self.buildings += [[b.name], [len(b.workers)]]
         self.building_count += 1
 
     def random_house(self):
+        """creates a house, adds it to the list"""
         house_size = random.randrange(0, 2, 1)
         if house_size == 0:
             h = House("Small")
@@ -114,6 +124,7 @@ class Adult:
     employed_list = list(employed_list)
 
     def __init__(self, house, job):
+        """initializes an adult"""
         self.gender = None
         self.name = None  # first name will be randomized, last name will be the household name, blank until generated later
         self.house = house  # last name/house they live in
@@ -126,6 +137,7 @@ class Adult:
         Adult.unemployed_list += [(self.full_name, self.job, self.gender, self.age)]
 
     def give_age(self):
+        """gives them an age, rolling two ages and taking the lower"""
         seed1 = random.randrange(17, 85, 1)
         seed2 = random.randrange(17, 85, 1)
         if seed1 <= seed2:
@@ -134,6 +146,7 @@ class Adult:
             self.age = seed2
 
     def assign_gender(self):
+        """gives them a random binary gender"""
         gender_seed = random.randrange(0, 2, 1)
         if gender_seed == 0:
             self.gender = "female"
@@ -141,29 +154,22 @@ class Adult:
             self.gender = "male"
 
     def give_name(self, gender):
+        """grants a first name, based on their gender, from an external list"""
         if gender == "male":
-            self.name = self.random_male_name(
+            self.name = self.random_name(
                 r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\malenames.txt")
         if gender == "female":
-            self.name = self.random_female_name(
+            self.name = self.random_name(
                 r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\femalenames.txt")
 
-    def random_male_name(self, names):
+    def random_name(self, names):
+        """separates external .txt into a list, gets a random name, assigns it"""
         f = open(names)
         name_list = f.read()
         name_list_parced = name_list.split()
         seed = random.randrange(0, len(name_list_parced) - 1, 1)
         self.name = name_list_parced[seed]
         return (self.name)
-
-    def random_female_name(self, names):
-        f = open(names)
-        name_list = f.read()
-        name_list_parced = name_list.split()
-        seed = random.randrange(0, len(name_list_parced) - 1, 1)
-        self.name = name_list_parced[seed]
-        return (self.name)
-
 
 class Child:
     kind = "person"
@@ -381,7 +387,9 @@ print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) 
 print("To view the Following Aspects, Enter the Number Given:")
 print("1: The Houses")
 print("2: The Other Buildings")
-print("3: The People")
+print("3: The Adults")
+print("4: The Children")
+print("5: Exit")
 done = 0
 while done != 1:
     aspect = int(input("Gimme a Number"))
@@ -394,15 +402,19 @@ while done != 1:
         start = 0
         last = 10
         while done_people == False:
-            t.display_people(start, last)
+            t.display_adults(start, last)
             choice = input("For next list type N, for previous type P, to view a person, type their number")
-            if choice == "N":
+            if choice == "N" or choice == "n":
                 start += 10
                 last += 10
-            if choice == "P" and start > 0:
+            if choice == "P" or choice == "p" and start > 0:
                 start -= 10
                 last -= 10
-            if choice == "P" and start == 0:
+            if choice == "P" or choice == "p" and start == 0:
                 print("Cannot go to previous")
-            if choice != "N" and choice != "P":
-                t.display_person(int(choice)-1)
+            if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
+                t.display_adult(int(choice)-1)
+            if choice == "D" or choice == "d":
+                done_people = True
+        if aspect == 4:
+            done = True
