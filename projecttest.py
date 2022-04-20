@@ -1,7 +1,3 @@
-import random
-import citizen as Adult
-import youngin as Child
-import residence as House
 import city as Town
 
 good_size = 0

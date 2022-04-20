@@ -36,13 +36,33 @@ class Town:
         attributes """
         if index < len(Adult.Adult.unemployed_list):
             print("      " + Adult.Adult.unemployed_list[index][0] + " is a " + str(Adult.Adult.unemployed_list[index][3]) + " year old " + Adult.Adult.unemployed_list[index][2] + " with no job")
-        else:
-            print("Employed")
+        if index >= len(Adult.Adult.unemployed_list):
             index -= len(Adult.Adult.unemployed_list)
+            print(index)
             if index < len(Adult.Adult.employed_list):
-                print("      " + Adult.Adult.employed_list[index][0] + " is a " + str(Adult.Adult.employed_list[index][3]) + " year old " + Adult.Adult.employed_list[index][2])
-                print("He works as a ")
-                print(Adult.Adult.employed_list[index][1])
+                workplace = self.check_workplace(Adult.Adult.employed_list[index-1][0][1])
+                if workplace == "":
+                    print("      " + Adult.Adult.employed_list[index-1][0][0] + " is a " + str(Adult.Adult.employed_list[index-1][0][3]) + " year old " + Adult.Adult.employed_list[index-1][0][2])
+                    if Adult.Adult.employed_list[index][0][2] == "male":
+                        print("      He works as a " + Adult.Adult.employed_list[index-1][0][1])
+                    if Adult.Adult.employed_list[index][0][2] == "female":
+                        print("      She works as a " + Adult.Adult.employed_list[index-1][0][1])
+                if workplace != "":
+                    print("      " + Adult.Adult.employed_list[index - 1][0][0] + " is a " + str(
+                        Adult.Adult.employed_list[index - 1][0][3]) + " year old " +
+                          Adult.Adult.employed_list[index - 1][0][2])
+                    if Adult.Adult.employed_list[index][0][2] == "male":
+                        print("      He works as a " + Adult.Adult.employed_list[index - 1][0][1] + " at " + workplace)
+                    if Adult.Adult.employed_list[index][0][2] == "female":
+                        print("      She works as a " + Adult.Adult.employed_list[index - 1][0][1] + " at " + workplace)
+    def check_workplace(self,job):
+        for x in Building.Building.building_list:
+            for y in x[2]:
+                if job == y:
+                    workplace = ""
+                    workplace = x[0]
+                    return workplace
+        return False
     def display_adults(self, start, finish):
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
@@ -51,22 +71,18 @@ class Town:
         unemployed = 0
         while index < finish and unemployed == 0:
             if index > len(Adult.Adult.unemployed_list)-1:
-                finish = index - len(Adult.Adult.unemployed_list)
+                finish -= index
                 index = 0
                 unemployed = 1
             else:
                 print(str(index+1) + ") " + Adult.Adult.unemployed_list[index][0])
                 index += 1
-
-        fixed_index = index + 1 - len(Adult.Adult.unemployed_list)
-        fixed_finish = finish + 1 - len(Adult.Adult.unemployed_list)
-        while fixed_index < fixed_finish and unemployed == 1:
-            if fixed_index > len(Adult.Adult.unemployed_list):
-                unemployed = 0
-            else:
-                print(Adult.Adult.employed_list[fixed_index][0])
-                print(str(fixed_index) + ") " + Adult.Adult.employed_list[fixed_index][0])
+        while index < finish and unemployed == 1:
+            if index < len(Adult.Adult.employed_list):
+                print(str(index + 1 + len(Adult.Adult.unemployed_list)) + ") " + Adult.Adult.employed_list[index-1][0][0])
                 index += 1
+            else:
+                unemployed = 2
 
     def unemployed_jobs(self):
         """will go through the list of unemployed adults and assign them either a job at home, keep them unemployed,
