@@ -31,20 +31,13 @@ while done != 1:
             if choice == "N" or choice == "n":
                 start += 10
                 last += 10
-            if choice == "P" or choice == "p" and start > 0:
+            if (choice == "P" or choice == "p") and start > 0:
                 start -= 10
                 last -= 10
-            if choice == "P" or choice == "p" and start == 0:
+            if (choice == "P" or choice == "p") and start == 0:
                 print("Cannot go to previous")
             if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
                 t.display_house(int(choice) - 1)
-                done_residents = False
-                while done_residents != True:
-                    pick = input("Select a worker to learn more about, or type D to leave")
-                    if pick == "D" or pick == "d":
-                        done_residents = True
-                    if choice != "d" and choice != "D":
-                        t.display_person(int(choice) - 1)
 
             if choice == "D" or choice == "d":
                 done_houses = True

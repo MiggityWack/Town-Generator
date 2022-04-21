@@ -15,7 +15,7 @@ class House:
         self.random_people_count(self.size)
         self.residents = []
         self.generate_residents(self.c_count, self.a_count)
-        House.house_list += [self.name, self.residents]
+        House.house_list.append([self.name, self.residents])
 
     def generate_residents(self, children, adults):
         i = 0

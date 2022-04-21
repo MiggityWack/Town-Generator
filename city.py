@@ -25,7 +25,7 @@ class Town:
             i = 0
             while i < len(Building.Building.building_list[index][2]):
                 if i % 2 == 0:
-                    print("      " + str(int(((i+2)/2))) + ") " + str(Building.Building.building_list[index][2][i]) + " is a ", end="")
+                    print("      " + str(int(((i+2)/2))) + ") " + str(Building.Building.building_list[index][2][i]) + "is a ", end="")
                 if i % 2 == 1:
                     print(str(Building.Building.building_list[index][2][i]))
                 i += 1
@@ -35,26 +35,32 @@ class Town:
         and then employed """
         index = start
         finish = finish
-        while index < finish < len(Building.Building.building_list):
+        if finish > len(Building.Building.building_list):
+            finish = len(Building.Building.building_list)
+        while index < finish:
             print(str(index + 1) + ") " + Building.Building.building_list[index][0])
             index += 1
-    def display_worker(self,index):
-        """given an index, it will search the employed list for a name and display them"""
-
     def display_house(self, index):
         """given an index, it will search through the children and display their age and gender """
-        if index < len(House.House.house_list):
-            print("      The " + str(House.House.house_list[index]) + " Household is a house with the following residents:")
-            i = 1
-        #NEED TO ADD MECHANISM TO DISPLAY ALL PEOPLE INDIVIDUALLY
+        print("      The " + str(House.House.house_list[index][0]) + "Household is a house with the following "
+                                                                     "residents:")
+        for x in House.House.house_list[index][1]:
+            for y in x:
+                if y[1] > 16:
+                    print("      " + y[0] + " is a " + str(y[1]) + " year old " + y[2])
+                if y[1] <= 16:
+                    print("      " + y[0] + " is a " + str(y[1]) + " year old " + y[2])
+
+
     def display_all_houses(self, start, finish):
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
         index = start
         finish = finish
-        while index < finish < len(House.House.house_list):
-            if index%2 == 0:
-                print((str(int(index/2)+1)) + ") The " + str(House.House.house_list[index]) + " Household")
+        if finish > len(House.House.house_list):
+            finish = len(House.House.house_list)
+        while index < finish:
+            print((str(int(index)+1)) + ") The " + str(House.House.house_list[index][0]) + " Household")
             index += 1
 
 
@@ -67,8 +73,9 @@ class Town:
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
         index = start
-        finish = finish
-        while index < finish < len(Child.Child.child_list):
+        if finish > len(Child.Child.child_list):
+            finish = len(Child.Child.child_list) -1
+        while index < finish:
             print(str(index + 1) + ") " + Child.Child.child_list[index][0])
             index += 1
 
@@ -100,7 +107,6 @@ class Town:
         for x in Building.Building.building_list:
             for y in x[2]:
                 if job == y:
-                    workplace = ""
                     workplace = x[0]
                     return workplace
         return False
