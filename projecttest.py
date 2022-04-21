@@ -6,7 +6,9 @@ import tkinter as tk
 def townmaker(args):
     global size
     size = args
-
+def choose_option(args):
+    global aspect
+    aspect = args
 
 root = Tk()
 root.geometry("750x500")
@@ -15,34 +17,59 @@ T = Text(root, height=10, width=1000)
 l = Label(root, text="Town Generator")
 l.config(font=("Courier", 16))
 main_text = "Welcome to the Program! Select a size to make the town!"
-bExit = Button(root, bg='red',text="Exit",
+bExit = Button(root, width = 18, bg='red',text="Exit",
             command=root.destroy)
 bSmall = Button(root,height=5,width=10,bg='light blue', text="Small", command=lambda: townmaker("Small"))
 bMedium = Button(root,height=5,width=10,bg='light blue', text="Medium", command=lambda: townmaker("Medium"))
 bLarge = Button(root,height=5,width=10,bg='light blue', text="Large", command=lambda: townmaker("Large"))
-bGo = Button(root, text="Make it!",bg='green', command=root.destroy)
+bGo = Button(root, text="Make it!",width =18,bg='green', command=root.destroy)
 bSmall.place(x=250,y=220)
 bMedium.place(x=350,y=220)
 bLarge.place(x=450,y=220)
-bGo.place(x=300,y=320)
 bExit.place(x=400,y=320)
+bGo.place(x=250,y=320)
 l.pack()
 T.pack()
 T.insert(tk.END, main_text)
 tk.mainloop()
 
 t = Town.Town(size)
-print(t.size + " Sized Town Generated")
-print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(
-    int(len(t.buildings) / 2)) + " Other Buildings")
 done = 0
 while done != 1:
-    print("To view the Following Aspects, Enter the Number Given:")
-    print("1: The Houses")
-    print("2: The Other Buildings")
-    print("3: The Adults")
-    print("4: The Children")
-    print("5: Exit")
+    master = Tk()
+    master.geometry("750x500")
+    T = Text(master, height=10, width=1000)
+    l = Label(master, text="Town Generator")
+    l.config(font=("Courier", 16))
+    main_text = t.size + " Sized Town Generated\nThe Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(
+        int(len(t.buildings) / 2)) + " Other Buildings\nClick any button to access the town"
+    bExit = Button(master, width = 24, bg='red',text="Exit",
+                command=choose_option(5))
+    bExit.place(x=400,y=320)
+    bHouses = Button(master,height=5,width=10,bg='light blue', text="The Houses", command=lambda: choose_option(1))
+    bBuildings = Button(master,height=5,width=10,bg='light blue', text="The Buildings", command=lambda: choose_option(2))
+    bAdults = Button(master,height=5,width=10,bg='light blue', text="The Adults", command=lambda: choose_option(3))
+    bChildren = Button(master,height=5,width=10,bg='light blue', text="The Children", command=lambda: choose_option(4))
+    bHouses.place(x=200, y=220)
+    bBuildings.place(x=300, y=220)
+    bAdults.place(x=400, y=220)
+    bChildren.place(x=500,y=220)
+    T.insert(tk.END, main_text)
+    l.pack()
+    T.pack()
+    tk.mainloop()
+
+
+
+
+
+
+    done = 1
+
+print("you escaped")
+
+
+while done != 1:
     aspect = int(input("\n"))
     if aspect == 1:
         done_houses = False

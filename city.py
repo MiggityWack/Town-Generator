@@ -7,6 +7,7 @@ import random
 
 class Town:
     def __init__(self, size):
+        """initializes the town"""
         self.size = size
         self.houses = []
         self.buildings = []

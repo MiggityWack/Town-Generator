@@ -7,6 +7,7 @@ class House:
     house_list = list(house_list)
 
     def __init__(self, size, name=""):
+        """initialize the house class, run functions to create people"""
         self.name = self.generate_name()
         self.size = size
         self.a_count = 0  # number of adults
@@ -18,6 +19,7 @@ class House:
         House.house_list.append([self.name, self.residents])
 
     def generate_residents(self, children, adults):
+        """adds in children and adults, initializes their creation"""
         i = 0
         j = 0
         temp_childs = []
