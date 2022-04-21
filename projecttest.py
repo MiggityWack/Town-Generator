@@ -2,6 +2,9 @@ import city as Town
 from tkinter import *
 import tkinter as tk
 
+def townmaker(args):
+    global size
+    size = args
 
 root = Tk()
 root.geometry("750x500")
@@ -11,9 +14,9 @@ l.config(font=("Courier", 16))
 main_text = "Welcome to the Program! Select a size to make the town!"
 b2 = Button(root, text="Exit",
             command=root.destroy)
-bSmall = Button(root, text="Small", command=lambda:Town.size_chooser("Small"))
-bMedium = Button(root, text="Medium", command=lambda:Town.size_chooser("Medium"))
-bLarge = Button(root, text="Large", command=lambda:Town.size_chooser("Large"))
+bSmall = Button(root, text="Small", command=lambda:townmaker("Small"))
+bMedium = Button(root, text="Medium", command=lambda:townmaker("Medium"))
+bLarge = Button(root, text="Large", command=lambda:townmaker("Large"))
 l.pack()
 T.pack()
 bSmall.pack()
@@ -23,9 +26,9 @@ b2.pack()
 T.insert(tk.END, main_text)
 tk.mainloop()
 
-size = 0
 t = Town.Town(size)
-print("\n\n\n\n\n"+ t.size + " Sized Town Generated")
+
+print(t.size + " Sized Town Generated")
 print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(
     int(len(t.buildings) / 2)) + " Other Buildings")
 done = 0
@@ -95,7 +98,7 @@ while done != 1:
             if choice == "P" or choice == "p" and start == 0:
                 print("Cannot go to previous")
             if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
-                t.display_adult(int(choice)-1)
+                t.display_adult(int(choice) - 1)
             if choice == "D" or choice == "d":
                 done_adults = True
     if aspect == 4:
@@ -119,6 +122,6 @@ while done != 1:
             if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
                 t.display_child(int(choice) - 1)
             if choice == "D" or choice == "d":
-               done_children = True
+                done_children = True
         if aspect == 5:
             done = True

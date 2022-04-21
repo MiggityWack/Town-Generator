@@ -4,6 +4,7 @@ import residence as House
 import workplace as Building
 import random
 
+
 class Town:
     def __init__(self, size):
         self.size = size
@@ -14,18 +15,20 @@ class Town:
         self.building_count = 0
         self.generate_houses()
         self.generate_buildings()
-        self.population = len(Child.Child.child_list) + len(Adult.Adult.unemployed_list) + len(Adult.Adult.employed_list)
+        self.population = len(Child.Child.child_list) + len(Adult.Adult.unemployed_list) + len(
+            Adult.Adult.employed_list)
         self.unemployed_jobs()
-
 
     def display_building(self, index):
         """given an index, it will search through the children and display their age and gender """
         if index < len(Building.Building.building_list):
-            print("      " + Building.Building.building_list[index][0] + " is a " + Building.Building.building_list[index][1] + " with the following workers:")
+            print("      " + Building.Building.building_list[index][0] + " is a " +
+                  Building.Building.building_list[index][1] + " with the following workers:")
             i = 0
             while i < len(Building.Building.building_list[index][2]):
                 if i % 2 == 0:
-                    print("      " + str(int(((i+2)/2))) + ") " + str(Building.Building.building_list[index][2][i]) + "is a ", end="")
+                    print("      " + str(int(((i + 2) / 2))) + ") " + str(
+                        Building.Building.building_list[index][2][i]) + "is a ", end="")
                 if i % 2 == 1:
                     print(str(Building.Building.building_list[index][2][i]))
                 i += 1
@@ -40,6 +43,7 @@ class Town:
         while index < finish:
             print(str(index + 1) + ") " + Building.Building.building_list[index][0])
             index += 1
+
     def display_house(self, index):
         """given an index, it will search through the children and display their age and gender """
         print("      The " + str(House.House.house_list[index][0]) + "Household is a house with the following "
@@ -51,7 +55,6 @@ class Town:
                 if y[1] <= 16:
                     print("      " + y[0] + " is a " + str(y[1]) + " year old " + y[2])
 
-
     def display_all_houses(self, start, finish):
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
@@ -60,21 +63,21 @@ class Town:
         if finish > len(House.House.house_list):
             finish = len(House.House.house_list)
         while index < finish:
-            print((str(int(index)+1)) + ") The " + str(House.House.house_list[index][0]) + " Household")
+            print((str(int(index) + 1)) + ") The " + str(House.House.house_list[index][0]) + " Household")
             index += 1
-
 
     def display_child(self, index):
         """given an index, it will search through the children and display their age and gender """
         if index < len(Child.Child.child_list):
-            print("      " + Child.Child.child_list[index][0] + " is a " + str(Child.Child.child_list[index][2]) + " year old " + Child.Child.child_list[index][1])
+            print("      " + Child.Child.child_list[index][0] + " is a " + str(
+                Child.Child.child_list[index][2]) + " year old " + Child.Child.child_list[index][1])
 
     def display_children(self, start, finish):
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
         index = start
         if finish > len(Child.Child.child_list):
-            finish = len(Child.Child.child_list) -1
+            finish = len(Child.Child.child_list) - 1
         while index < finish:
             print(str(index + 1) + ") " + Child.Child.child_list[index][0])
             index += 1
@@ -83,18 +86,22 @@ class Town:
         """given an index, it will search through the unemployed and then employed adults and display their
         attributes """
         if index < len(Adult.Adult.unemployed_list):
-            print("      " + Adult.Adult.unemployed_list[index][0] + " is a " + str(Adult.Adult.unemployed_list[index][3]) + " year old " + Adult.Adult.unemployed_list[index][2] + " with no job")
+            print("      " + Adult.Adult.unemployed_list[index][0] + " is a " + str(
+                Adult.Adult.unemployed_list[index][3]) + " year old " + Adult.Adult.unemployed_list[index][
+                      2] + " with no job")
         if index >= len(Adult.Adult.unemployed_list):
             index -= len(Adult.Adult.unemployed_list)
             print(index)
             if index < len(Adult.Adult.employed_list):
-                workplace = self.check_workplace(Adult.Adult.employed_list[index-1][0][1])
+                workplace = self.check_workplace(Adult.Adult.employed_list[index - 1][0][1])
                 if workplace == "":
-                    print("      " + Adult.Adult.employed_list[index-1][0][0] + " is a " + str(Adult.Adult.employed_list[index-1][0][3]) + " year old " + Adult.Adult.employed_list[index-1][0][2])
+                    print("      " + Adult.Adult.employed_list[index - 1][0][0] + " is a " + str(
+                        Adult.Adult.employed_list[index - 1][0][3]) + " year old " +
+                          Adult.Adult.employed_list[index - 1][0][2])
                     if Adult.Adult.employed_list[index][0][2] == "male":
-                        print("      He works as a " + Adult.Adult.employed_list[index-1][0][1])
+                        print("      He works as a " + Adult.Adult.employed_list[index - 1][0][1])
                     if Adult.Adult.employed_list[index][0][2] == "female":
-                        print("      She works as a " + Adult.Adult.employed_list[index-1][0][1])
+                        print("      She works as a " + Adult.Adult.employed_list[index - 1][0][1])
                 if workplace != "":
                     print("      " + Adult.Adult.employed_list[index - 1][0][0] + " is a " + str(
                         Adult.Adult.employed_list[index - 1][0][3]) + " year old " +
@@ -103,13 +110,15 @@ class Town:
                         print("      He works as a " + Adult.Adult.employed_list[index - 1][0][1] + " at " + workplace)
                     if Adult.Adult.employed_list[index][0][2] == "female":
                         print("      She works as a " + Adult.Adult.employed_list[index - 1][0][1] + " at " + workplace)
-    def check_workplace(self,job):
+
+    def check_workplace(self, job):
         for x in Building.Building.building_list:
             for y in x[2]:
                 if job == y:
                     workplace = x[0]
                     return workplace
         return False
+
     def display_adults(self, start, finish):
         """given a range, it will display the first and last names of the adults between the two marks, unemployed
         and then employed """
@@ -117,16 +126,18 @@ class Town:
         finish = finish
         unemployed = 0
         while index < finish and unemployed == 0:
-            if index > len(Adult.Adult.unemployed_list)-1:
+            if index > len(Adult.Adult.unemployed_list) - 1:
                 finish -= index
                 index = 0
                 unemployed = 1
             else:
-                print(str(index+1) + ") " + Adult.Adult.unemployed_list[index][0])
+                print(str(index + 1) + ") " + Adult.Adult.unemployed_list[index][0])
                 index += 1
         while index < finish and unemployed == 1:
             if index < len(Adult.Adult.employed_list):
-                print(str(index + 1 + len(Adult.Adult.unemployed_list)) + ") " + Adult.Adult.employed_list[index-1][0][0])
+                print(
+                    str(index + 1 + len(Adult.Adult.unemployed_list)) + ") " + Adult.Adult.employed_list[index - 1][0][
+                        0])
                 index += 1
             else:
                 unemployed = 2
@@ -146,16 +157,15 @@ class Town:
                 home_jobs_parced = home_jobs.split("\n")
                 seed2 = random.randrange(0, len(home_jobs_parced) - 1, 1)
                 home_job = home_jobs_parced[seed2]
-                print(Adult.Adult.unemployed_list[1][0])
-                new_jobholder = [Adult.Adult.unemployed_list[1][0], home_job, Adult.Adult.unemployed_list[1][2], Adult.Adult.unemployed_list[1][3]]
+                new_jobholder = [Adult.Adult.unemployed_list[1][0], home_job, Adult.Adult.unemployed_list[1][2],
+                                 Adult.Adult.unemployed_list[1][3]]
                 Adult.Adult.employed_list.append([new_jobholder])
                 Adult.Adult.unemployed_list.pop(x[0])
-                print("job given")
 
     def generate_buildings(self):
         """returns a random number of buildings based in ranges based on the town size"""
         if self.size == "Small":
-            building_count = random.randrange(3, 9, 1)
+            building_count = random.randrange(3, 7, 1)
         if self.size == "Medium":
             building_count = random.randrange(12, 18, 1)
         if self.size == "Large":
@@ -165,9 +175,6 @@ class Town:
             self.random_building()
             i += 1
         return ()
-
-    def size_chooser(self,size_choice):
-        self.size = size_choice
 
     def generate_houses(self):
         """returns a random number of houses of varying sizes based in ranges based on the town size"""
@@ -200,3 +207,6 @@ class Town:
             h = House.House("Large")
         self.houses += [[h.name], [h.r_count]]
         self.house_count += 1
+
+
+
