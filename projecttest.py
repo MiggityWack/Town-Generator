@@ -1,12 +1,29 @@
 import city as Town
+from tkinter import *
+import tkinter as tk
 
-good_size = 0
-while (good_size != 1):
-    size = input("Input your size! Small, Medium, or Large?")
-    if size != "Small" and size != "Medium" and size != "Large":
-        print("Incorrect size given, remember to capitalize the first letter!")
-    else:
-        good_size = 1
+
+root = Tk()
+root.geometry("750x500")
+T = Text(root, height=10, width=1000)
+l = Label(root, text="Town Generator")
+l.config(font=("Courier", 16))
+main_text = "Welcome to the Program! Select a size to make the town!"
+b2 = Button(root, text="Exit",
+            command=root.destroy)
+bSmall = Button(root, text="Small", command=lambda:Town.size_chooser("Small"))
+bMedium = Button(root, text="Medium", command=lambda:Town.size_chooser("Medium"))
+bLarge = Button(root, text="Large", command=lambda:Town.size_chooser("Large"))
+l.pack()
+T.pack()
+bSmall.pack()
+bMedium.pack()
+bLarge.pack()
+b2.pack()
+T.insert(tk.END, main_text)
+tk.mainloop()
+
+size = 0
 t = Town.Town(size)
 print("\n\n\n\n\n"+ t.size + " Sized Town Generated")
 print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(

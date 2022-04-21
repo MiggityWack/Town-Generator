@@ -134,10 +134,11 @@ class Town:
     def unemployed_jobs(self):
         """will go through the list of unemployed adults and assign them either a job at home, keep them unemployed,
         or if they are old enough, retire them """
-        for x in Adult.Adult.unemployed_list:
+        for x in enumerate(Adult.Adult.unemployed_list):
             seed = random.randrange(0, 3, 1)
-            if x[3] > 60:
-                x = [x[0], "Retired", x[2], x[3]]
+            if x[1][3] > 50:
+                Adult.Adult.unemployed_list.append([x[1][0], "Retired", x[1][2], x[1][3]])
+                Adult.Adult.unemployed_list.pop(x[0])
             if (seed == 0 or seed == 1):
                 f = open(
                     r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\homejobs.txt")
@@ -145,9 +146,11 @@ class Town:
                 home_jobs_parced = home_jobs.split("\n")
                 seed2 = random.randrange(0, len(home_jobs_parced) - 1, 1)
                 home_job = home_jobs_parced[seed2]
-                new_jobholder = Adult.Adult.unemployed_list[0][0], home_job, Adult.Adult.unemployed_list[0][2], Adult.Adult.unemployed_list[0][3]
+                print(Adult.Adult.unemployed_list[1][0])
+                new_jobholder = [Adult.Adult.unemployed_list[1][0], home_job, Adult.Adult.unemployed_list[1][2], Adult.Adult.unemployed_list[1][3]]
                 Adult.Adult.employed_list.append([new_jobholder])
-                Adult.Adult.unemployed_list.pop(0)
+                Adult.Adult.unemployed_list.pop(x[0])
+                print("job given")
 
     def generate_buildings(self):
         """returns a random number of buildings based in ranges based on the town size"""
@@ -163,12 +166,15 @@ class Town:
             i += 1
         return ()
 
+    def size_chooser(self,size_choice):
+        self.size = size_choice
+
     def generate_houses(self):
         """returns a random number of houses of varying sizes based in ranges based on the town size"""
         if self.size == "Small":
             house_count = random.randrange(4, 10, 1)
         if self.size == "Medium":
-            house_count = random.randrange(12, 18, 1)
+            house_count = random.randrange(14, 22, 1)
         if self.size == "Large":
             house_count = random.randrange(24, 35, 1)
         i = 0

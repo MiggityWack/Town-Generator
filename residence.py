@@ -45,13 +45,13 @@ class House:
     def random_people_count(self, size):
         if size == "Small":
             self.a_count = random.randrange(1, 3, 1)
-            self.c_count = random.randrange(0, 2, 1)
+            self.c_count = random.randrange(0, 3, 1)
         if size == "Medium":
             self.a_count = random.randrange(2, 4, 1)
             self.c_count = random.randrange(2, 5, 1)
         if size == "Large":
-            self.a_count = random.randrange(2, 7, 1)
-            self.c_count = random.randrange(3, 9, 1)
+            self.a_count = random.randrange(3, 7, 1)
+            self.c_count = random.randrange(4, 9, 1)
         self.r_count = self.a_count + self.c_count
 
     def headcount(self):
