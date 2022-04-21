@@ -39,6 +39,23 @@ class Town:
             print(str(index + 1) + ") " + Building.Building.building_list[index][0])
             index += 1
 
+    def display_house(self, index):
+        """given an index, it will search through the children and display their age and gender """
+        if index < len(House.House.house_list):
+            print("      The " + str(House.House.house_list[index]) + " Household is a house with the following residents:")
+            i = 1
+        #NEED TO ADD MECHANISM TO DISPLAY ALL PEOPLE INDIVIDUALLY
+    def display_all_houses(self, start, finish):
+        """given a range, it will display the first and last names of the adults between the two marks, unemployed
+        and then employed """
+        index = start
+        finish = finish
+        while index < finish < len(House.House.house_list):
+            if index%2 == 0:
+                print((str(int(index/2)+1)) + ") The " + str(House.House.house_list[index]) + " Household")
+            index += 1
+
+
     def display_child(self, index):
         """given an index, it will search through the children and display their age and gender """
         if index < len(Child.Child.child_list):
