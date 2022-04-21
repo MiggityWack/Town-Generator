@@ -2,32 +2,36 @@ import city as Town
 from tkinter import *
 import tkinter as tk
 
+
 def townmaker(args):
     global size
     size = args
 
+
 root = Tk()
 root.geometry("750x500")
+var = tk.IntVar()
 T = Text(root, height=10, width=1000)
 l = Label(root, text="Town Generator")
 l.config(font=("Courier", 16))
 main_text = "Welcome to the Program! Select a size to make the town!"
-b2 = Button(root, text="Exit",
+bExit = Button(root, bg='red',text="Exit",
             command=root.destroy)
-bSmall = Button(root, text="Small", command=lambda:townmaker("Small"))
-bMedium = Button(root, text="Medium", command=lambda:townmaker("Medium"))
-bLarge = Button(root, text="Large", command=lambda:townmaker("Large"))
+bSmall = Button(root,height=5,width=10,bg='light blue', text="Small", command=lambda: townmaker("Small"))
+bMedium = Button(root,height=5,width=10,bg='light blue', text="Medium", command=lambda: townmaker("Medium"))
+bLarge = Button(root,height=5,width=10,bg='light blue', text="Large", command=lambda: townmaker("Large"))
+bGo = Button(root, text="Make it!",bg='green', command=root.destroy)
+bSmall.place(x=250,y=220)
+bMedium.place(x=350,y=220)
+bLarge.place(x=450,y=220)
+bGo.place(x=300,y=320)
+bExit.place(x=400,y=320)
 l.pack()
 T.pack()
-bSmall.pack()
-bMedium.pack()
-bLarge.pack()
-b2.pack()
 T.insert(tk.END, main_text)
 tk.mainloop()
 
 t = Town.Town(size)
-
 print(t.size + " Sized Town Generated")
 print("The Town has " + str(t.population) + " People, " + str(int(len(t.houses) / 2)) + " Houses, and " + str(
     int(len(t.buildings) / 2)) + " Other Buildings")
