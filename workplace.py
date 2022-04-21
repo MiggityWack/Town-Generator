@@ -11,6 +11,7 @@ class Building:
         self.title = ""
         self.name = ""
         self.jobs = []  # the jobs that must be filled
+        self.jobs = list(self.jobs)
         self.workers = []  # the workers
         self.determine_type()
         self.assign_workers()
@@ -35,8 +36,6 @@ class Building:
             new_jobholder = Adult.Adult.unemployed_list[0][0], x, Adult.Adult.unemployed_list[0][2], Adult.Adult.unemployed_list[0][3]
             Adult.Adult.employed_list.append([new_jobholder])
             Adult.Adult.unemployed_list.pop(0)
-            self.jobs.pop()
-
             self.workers += [[new_jobholder[0]], new_jobholder[1]]
 
     def name_assembler(self):

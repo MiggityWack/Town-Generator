@@ -17,6 +17,28 @@ class Town:
         self.population = len(Child.Child.child_list) + len(Adult.Adult.unemployed_list) + len(Adult.Adult.employed_list)
         self.unemployed_jobs()
 
+
+    def display_building(self, index):
+        """given an index, it will search through the children and display their age and gender """
+        if index < len(Building.Building.building_list):
+            print("      " + Building.Building.building_list[index][0] + " is a " + Building.Building.building_list[index][1] + " with the following workers:")
+            i = 0
+            while i < len(Building.Building.building_list[index][2]):
+                if i % 2 == 0:
+                    print("      " + str(int(((i+2)/2))) + ") " + str(Building.Building.building_list[index][2][i]) + " is a ", end="")
+                if i % 2 == 1:
+                    print(str(Building.Building.building_list[index][2][i]))
+                i += 1
+
+    def display_all_buildings(self, start, finish):
+        """given a range, it will display the first and last names of the adults between the two marks, unemployed
+        and then employed """
+        index = start
+        finish = finish
+        while index < finish < len(Building.Building.building_list):
+            print(str(index + 1) + ") " + Building.Building.building_list[index][0])
+            index += 1
+
     def display_child(self, index):
         """given an index, it will search through the children and display their age and gender """
         if index < len(Child.Child.child_list):
