@@ -66,7 +66,7 @@ class Building:
                 r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\titles.txt")
             title_list = f.read()
             title_list_parced = title_list.split("\n")
-            seed = random.randrange(0, 3, 1)
+            seed = random.randrange(0, len(title_list_parced), 1)
             self.title = title_list_parced[seed]
             return (self.title)
         if 8 > seed > 4:
@@ -74,7 +74,7 @@ class Building:
                 r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\pretitles.txt")
             pretitle_list = f.read()
             pretitle_list_parced = pretitle_list.split("\n")
-            seed = random.randrange(0, 3, 1)
+            seed = random.randrange(0, len(pretitle_list_parced), 1)
             self.pretitle = pretitle_list_parced[seed]
             return (self.pretitle)
 

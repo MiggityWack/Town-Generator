@@ -1,0 +1,40 @@
+Lumberyard Logger Splitter
+Pub Barkeep Waiter Chef
+Museum Curator
+Fishing-Dock Fisherman Fisherman
+Graveyard Gravedigger
+Library Librarian
+School Teacher
+Bar Barkeep
+Restaurant Waiter Chef
+Clinic Doctor
+Church Priest
+Town-Hall Clerk Mayor
+Bakery Baker
+Mine Miner Miner
+Jewelers Jeweler
+Woodshop Carpenter
+Guild Guildmaster
+Guardhouse Guard Guard
+Wizard-Tower Wizard
+Sewshop Tailor
+Butchery Butcher
+Tanner Tanner
+General-Store Storekeep
+Alchemist's-Shop Potionmaster
+Armory Armorer
+Blacksmith Blacksmith
+Fletchery Fletcher
+Cobbler Cobbler
+Hunting-Lodge Hunter Hunter
+Metalworker's Metalworker
+Mill Millman
+Stonemason Stonemason
+Furshop Trapper Furworker
+Candleshop Chandler
+Barrelshop Cooper
+Apiary Beekeeper
+Police-Station Lawman
+Stable Horsemaster
+Ranch Rancher Rancher Farmhand
+Farm Farmhand Farmhand Farmhand

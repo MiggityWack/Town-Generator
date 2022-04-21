@@ -27,7 +27,7 @@ while done != 1:
         while not done_houses:
             t.display_all_houses(start, last)
             choice = input(
-                "For next list type N, for previous type P, to view a person, type their number, and to leave, type D")
+                "For next list type N, for previous type P, to view a house, type their number, and to leave, type D")
             if choice == "N" or choice == "n":
                 start += 10
                 last += 10
@@ -37,7 +37,15 @@ while done != 1:
             if choice == "P" or choice == "p" and start == 0:
                 print("Cannot go to previous")
             if choice != "N" and choice != "P" and choice != "p" and choice != "n" and choice != "d" and choice != "D":
-                t.display_building(int(choice) - 1)
+                t.display_house(int(choice) - 1)
+                done_residents = False
+                while done_residents != True:
+                    pick = input("Select a worker to learn more about, or type D to leave")
+                    if pick == "D" or pick == "d":
+                        done_residents = True
+                    if choice != "d" and choice != "D":
+                        t.display_person(int(choice) - 1)
+
             if choice == "D" or choice == "d":
                 done_houses = True
     if aspect == 2:
@@ -47,7 +55,7 @@ while done != 1:
         while not done_buildings:
             t.display_all_buildings(start, last)
             choice = input(
-                "For next list type N, for previous type P, to view a person, type their number, and to leave, type D")
+                "For next list type N, for previous type P, to view a building, type their number, and to leave, type D")
             if choice == "N" or choice == "n":
                 start += 10
                 last += 10
@@ -66,7 +74,8 @@ while done != 1:
         last = 10
         while not done_adults:
             t.display_adults(start, last)
-            choice = input("For next list type N, for previous type P, to view a person, type their number, and to leave, type D")
+            choice = input("For next list type N, for previous type P, to view an adult, type their number, "
+                           "and to leave, type D")
             if choice == "N" or choice == "n":
                 start += 10
                 last += 10
@@ -86,7 +95,8 @@ while done != 1:
         last = 10
         while done_children == False:
             t.display_children(start, last)
-            choice = input("For next list type N, for previous type P, to view a child, type their number, and to leave, type D")
+            choice = input("For next list type N, for previous type P, to view a child, type their number, "
+                           "and to leave, type D")
 
             if choice == "N" or choice == "n":
                 start += 10

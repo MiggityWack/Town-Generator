@@ -1,0 +1,9 @@
+Sailor
+Seamstress
+Mercenary
+Cartographer
+Painter
+Artist
+Sculptor
+Seer
+Therapist

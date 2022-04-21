@@ -38,6 +38,8 @@ class Town:
         while index < finish < len(Building.Building.building_list):
             print(str(index + 1) + ") " + Building.Building.building_list[index][0])
             index += 1
+    def display_worker(self,index):
+        """given an index, it will search the employed list for a name and display them"""
 
     def display_house(self, index):
         """given an index, it will search through the children and display their age and gender """
