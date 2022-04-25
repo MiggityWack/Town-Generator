@@ -29,7 +29,7 @@ class Town:
             while i < len(Building.Building.building_list[index][2]):
                 if i % 2 == 0:
                     print("      " + str(int(((i + 2) / 2))) + ") " + str(
-                        Building.Building.building_list[index][2][i]) + "is a ", end="")
+                        Building.Building.building_list[index][2][i][0]) + " is a ", end="")
                 if i % 2 == 1:
                     print(str(Building.Building.building_list[index][2][i]))
                 i += 1
@@ -47,7 +47,7 @@ class Town:
 
     def display_house(self, index):
         """given an index, it will search through the children and display their age and gender """
-        print("      The " + str(House.House.house_list[index][0]) + "Household is a house with the following "
+        print("      The " + str(House.House.house_list[index][0]) + " Household is a house with the following "
                                                                      "residents:")
         for x in House.House.house_list[index][1]:
             for y in x:
