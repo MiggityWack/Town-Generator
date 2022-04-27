@@ -38,7 +38,7 @@ class House:
     def generate_name(self):
         """gives a surname to the house"""
         f = open(
-            r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\surnames.txt")
+            r"Text Files/surnames.txt")
         name_list = f.read()
         name_list_parced = name_list.split()
         seed = random.randrange(0, 1000, 1)

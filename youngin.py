@@ -27,10 +27,10 @@ class Child:
         """chooses list to run name function with, assigns name"""
         if gender == "male":
             self.name = self.random_name(
-                r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\malenames.txt")
+                r"Text Files/malenames.txt")
         if gender == "female":
             self.name = self.random_name(
-                r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\femalenames.txt")
+                r"Text Files/femalenames.txt")
 
     def random_name(self, names):
         """separates external .txt into a list, gets a random name, assigns it"""

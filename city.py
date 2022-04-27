@@ -153,7 +153,7 @@ class Town:
                 Adult.Adult.unemployed_list.pop(x[0])
             if (seed == 0 or seed == 1):
                 f = open(
-                    r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\homejobs.txt")
+                    r"Text Files/homejobs.txt")
                 home_jobs = f.read()
                 home_jobs_parced = home_jobs.split("\n")
                 seed2 = random.randrange(0, len(home_jobs_parced) - 1, 1)

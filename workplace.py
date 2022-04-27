@@ -51,7 +51,7 @@ class Building:
     def determine_type(self):
         """gives type of building and assigns joblist"""
         f = open(
-            r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\jobsfixed.txt")
+            r"Text Files/jobsfixed.txt")
         type_list = f.read()
         type_list_parced = type_list.split("\n")
         seed = random.randrange(0, len(type_list_parced) - 1, 1)
@@ -69,7 +69,7 @@ class Building:
         seed = random.randrange(0, 9, 1)
         if seed < 4:
             f = open(
-                r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\titles.txt")
+                r"Text Files/titles.txt")
             title_list = f.read()
             title_list_parced = title_list.split("\n")
             seed = random.randrange(0, len(title_list_parced), 1)
@@ -77,7 +77,7 @@ class Building:
             return (self.title)
         if 8 > seed > 4:
             f = open(
-                r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\pretitles.txt")
+                r"Text FIles/pretitles.txt")
             pretitle_list = f.read()
             pretitle_list_parced = pretitle_list.split("\n")
             seed = random.randrange(0, len(pretitle_list_parced), 1)
