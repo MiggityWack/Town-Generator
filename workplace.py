@@ -6,6 +6,7 @@ class Building:
     building_list = list(building_list)
 
     def __init__(self):
+        """creates building, runs subfunctions"""
         self.type = ""
         self.pretitle = ""
         self.title = ""
@@ -22,6 +23,7 @@ class Building:
         Building.building_list.append([self.name, self.type, self.workers])
 
     def designate_ownership(self):
+        """grants owning title"""
         if self.title == "" and self.pretitle == "":
             name = self.workers[0][0]
             name_split = name.split(" ")
@@ -32,6 +34,7 @@ class Building:
                 self.pretitle = name_split[1] + "'s "
 
     def assign_workers(self):
+        """gives the building its adult workers"""
         for x in self.jobs:
             new_jobholder = Adult.Adult.unemployed_list[0][0], x, Adult.Adult.unemployed_list[0][2], Adult.Adult.unemployed_list[0][3]
             Adult.Adult.employed_list.append([new_jobholder])
@@ -39,12 +42,14 @@ class Building:
             self.workers += [[new_jobholder[0]], new_jobholder[1]]
 
     def name_assembler(self):
+        """puts name together using type and titles"""
         if self.pretitle != "":
             self.name = self.pretitle + " " + self.type
         if self.title != "":
             self.name = self.type + " " + self.title
 
     def determine_type(self):
+        """gives type of building and assigns joblist"""
         f = open(
             r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\jobsfixed.txt")
         type_list = f.read()
@@ -60,6 +65,7 @@ class Building:
         return ()
 
     def give_title(self):
+        """finds a random title for the building to use"""
         seed = random.randrange(0, 9, 1)
         if seed < 4:
             f = open(

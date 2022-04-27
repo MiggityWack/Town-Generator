@@ -36,6 +36,7 @@ class House:
         return ()
 
     def generate_name(self):
+        """gives a surname to the house"""
         f = open(
             r"C:\Users\jaden\OneDrive\Documents\Northeastern\Northeastern\2022 Spring\Computing Fundamentals\final project\surnames.txt")
         name_list = f.read()
@@ -45,6 +46,7 @@ class House:
         return self.name
 
     def random_people_count(self, size):
+        """assigns the population of the house based on the size"""
         if size == "Small":
             self.a_count = random.randrange(1, 3, 1)
             self.c_count = random.randrange(0, 3, 1)
@@ -57,12 +59,15 @@ class House:
         self.r_count = self.a_count + self.c_count
 
     def headcount(self):
+        """counts the residents"""
         return self.r_count
 
     def add_resident(self, firstname):
+        """adds a new resident"""
         self.residents += firstname
 
     def return_residents(self):
+        """returns list of the residents"""
         for x in self.residents:
             print(x + " " + self.name)
 
