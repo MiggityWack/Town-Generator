@@ -9,14 +9,14 @@ class House:
     def __init__(self, size, name=""):
         """initialize the house class, run functions to create people"""
         self.name = self.generate_name()
-        self.size = size
+        self.size = size #small, medium, or large
         self.a_count = 0  # number of adults
         self.c_count = 0  # number of children
         self.r_count = 0  # number of residents
-        self.random_people_count(self.size)
+        self.random_people_count(self.size) #gives an empty population based on size
         self.residents = []
-        self.generate_residents(self.c_count, self.a_count)
-        House.house_list.append([self.name, self.residents])
+        self.generate_residents(self.c_count, self.a_count) #make people to fill empty slots
+        House.house_list.append([self.name, self.residents]) #add the residents to the house list
 
     def generate_residents(self, children, adults):
         """adds in children and adults, initializes their creation"""
