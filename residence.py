@@ -62,12 +62,3 @@ class House:
         """counts the residents"""
         return self.r_count
 
-    def add_resident(self, firstname):
-        """adds a new resident"""
-        self.residents += firstname
-
-    def return_residents(self):
-        """returns list of the residents"""
-        for x in self.residents:
-            print(x + " " + self.name)
-
