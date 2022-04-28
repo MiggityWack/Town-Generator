@@ -11,8 +11,7 @@ class Town:
         self.size = size #town sizeas given in the input
         self.houses = [] #list of houses
         self.buildings = [] #list of buildings
-        self.stores = 0 #various counting vars
-        self.house_count = 0
+        self.house_count = 0#various counting vars
         self.building_count = 0
         self.generate_houses() #command to make houses and therefore people
         self.generate_buildings() #command to make buildings and therefore assign jobs
